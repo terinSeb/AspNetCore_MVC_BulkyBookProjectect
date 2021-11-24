@@ -1,0 +1,15 @@
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\bin\Debug\net5.0\BulkyBook.DataAccess.deps.json
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\bin\Debug\net5.0\BulkyBook.DataAccess.runtimeconfig.json
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\bin\Debug\net5.0\BulkyBook.DataAccess.runtimeconfig.dev.json
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\bin\Debug\net5.0\BulkyBook.DataAccess.dll
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\bin\Debug\net5.0\ref\BulkyBook.DataAccess.dll
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\bin\Debug\net5.0\BulkyBook.DataAccess.pdb
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.csproj.AssemblyReference.cache
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.AssemblyInfoInputs.cache
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.AssemblyInfo.cs
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.csproj.CoreCompileInputs.cache
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.dll
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\ref\BulkyBook.DataAccess.dll
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.pdb
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook.DataAccess\obj\Debug\net5.0\BulkyBook.DataAccess.genruntimeconfig.cache
