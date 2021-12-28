@@ -1,6 +1,7 @@
-﻿<div class="row">
+﻿@model int
+<div class="row">
     <div class="col">
-        <button type="submit" class="btn btn-primary from-control">Create</button>
+        <button type="submit" class="btn btn-primary from-control" asp-route-id ="@Model">Update</button>
     </div>
     <div class="col">
         <button asp-action="Index" class="btn btn-primary from-control">Back to List</button>

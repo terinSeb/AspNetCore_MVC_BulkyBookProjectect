@@ -38,6 +38,26 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(category);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(Category category)
+        {
+            if(ModelState.IsValid)
+            {
+                if(category.Id == 0)
+                {
+                    _unitOfWork.Category.Add(category);
+                }
+                else
+                {
+                    _unitOfWork.Category.Update(category);
+                }
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(category);
+        }
+
         #region API Calls
         public IActionResult GetAll()
         {
