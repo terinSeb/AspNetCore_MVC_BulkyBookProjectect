@@ -59,10 +59,23 @@ namespace BulkyBook.Areas.Admin.Controllers
         }
 
         #region API Calls
+        [HttpGet]
         public IActionResult GetAll()
         {
             var allObj = _unitOfWork.Category.GetAll();
             return Json(new  {  data = allObj});
+        }
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var ObjFromDb = _unitOfWork.Category.get(id);
+            if(ObjFromDb == null)
+            {
+                return Json(new { success = false, message = "Error While Deleting" });
+            }
+            _unitOfWork.Category.Remove(ObjFromDb);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Successfull" });
         }
         #endregion
     }
