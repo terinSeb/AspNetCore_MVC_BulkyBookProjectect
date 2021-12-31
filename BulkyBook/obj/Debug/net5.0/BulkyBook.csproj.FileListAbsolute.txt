@@ -451,3 +451,5 @@ D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Are
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Admin\Views\Category\Upsert.cshtml.g.cs
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Views\Shared\_CreateAndBackToListButtom.cshtml.g.cs
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Views\Shared\_EditAndBackToListButtom.cshtml.g.cs
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Admin\Views\CoverType\Index.cshtml.g.cs
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Admin\Views\CoverType\Upsert.cshtml.g.cs
