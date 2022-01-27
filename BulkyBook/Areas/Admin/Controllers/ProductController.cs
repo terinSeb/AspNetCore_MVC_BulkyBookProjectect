@@ -1,5 +1,6 @@
 ﻿using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
+using BulkyBook.Models.ViewModels;
 using BulkyBook.Utility;
 using Dapper;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -28,21 +29,34 @@ namespace BulkyBook.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            Product product = new Product();
+            ProductVM productVM = new ProductVM()
+            {
+                product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }
+                ),
+                CoverTypeList = _unitOfWork.coverType.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }
+                )
+            };
             if (id == null)
             {
                 //this is for create
-                return View(product);
+                return View(productVM);
             }
             //this is for edit
-            var parameter = new DynamicParameters();
-            parameter.Add("@id", id);
-            product = _unitOfWork.product.get(id.GetValueOrDefault());
-            if (product == null)
+            productVM.product  = _unitOfWork.product.get(id.GetValueOrDefault());
+            if (productVM.product == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(productVM.product);
         }
 
         [HttpPost]
@@ -73,7 +87,7 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var allObj = _unitOfWork.product.GetAll();
+            var allObj = _unitOfWork.product.GetAll(includeProperties:"Category,CoverType");
 
             //--------------------------------Using Calling SP ---------------------------------
 
