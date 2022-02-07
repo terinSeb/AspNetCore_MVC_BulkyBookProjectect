@@ -34,7 +34,7 @@ namespace BulkyBook.DataAccess.Repository
                 ObjFromDb.Title = product.Title;
                 ObjFromDb.Description = product.Description;
                 ObjFromDb.CoverTypeId = product.CoverTypeId;
-                ObjFromDb.CategoryId = product.CategoryId;\
+                ObjFromDb.CategoryId = product.CategoryId;
                 ObjFromDb.Author = product.Author;
             }
         }

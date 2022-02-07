@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using BulkyBook.DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -17,10 +19,12 @@ namespace BulkyBook.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        private readonly ApplicationDbContext _db;
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment, ApplicationDbContext db)
         {
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -87,8 +91,8 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var allObj = _unitOfWork.product.GetAll(includeProperties:"Category,CoverType");
-
+            var allObj = _unitOfWork.product.GetAll(includeProperties: "category,coverType");
+           
             //--------------------------------Using Calling SP ---------------------------------
 
             //var allObj = _unitOfWork.SP_Call.List<Product>(SD.Proc_Products_GetAll, null);
