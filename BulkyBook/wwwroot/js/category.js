@@ -10,7 +10,7 @@ function loadDataTable() {
             "url": "/Admin/Category/GetAll"
         },
         "columns": [
-            { "data": "name", "width": "60%" },
+            { "data": "name", "width": "59%" },
             {
                 "data": "id",
                 "render": function (data) {
