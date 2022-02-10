@@ -1,0 +1,144 @@
+﻿@model BulkyBook.Models.ViewModels.ProductVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Create Product";
+}
+
+<form method="post" enctype ="multipart/form-data">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row p-3 border">
+        @{
+            if(Model.product.Id != 0)
+            {
+                title = "Edit Product";
+                <input type="hidden" asp-for="product.Id"/>
+            }
+        }
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.Title" class="form-control"/>
+                    <span asp-validation-for="product.Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.ISBN"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.ISBN" class="form-control" />
+                    <span asp-validation-for="product.ISBN" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.Author"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.Author" class="form-control" />
+                    <span asp-validation-for="product.Author" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.Description"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.Description" class="form-control" />
+                    <span asp-validation-for="product.Description" class="text-danger"></span>
+                </div>
+            </div>
+               <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.ListPrice"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.ListPrice" class="form-control"/>
+                    <span asp-validation-for="product.ListPrice" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.Price" class="form-control" />
+                    <span asp-validation-for="product.Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.Price50"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.Price50" class="form-control" />
+                    <span asp-validation-for="product.Price50" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="product.Price100"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="product.Price100" class="form-control" />
+                    <span asp-validation-for="product.Price100" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Category
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.product.CategoryId,Model.CategoryList,"Select a category", new {@class = "form-control"})
+                    <span asp-validation-for="product.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Cover Type
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.product.CoverTypeId,Model.CoverTypeList,"Select a Cover Type", new {@class = "form-control"})
+                    <span asp-validation-for="product.CoverTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Image
+                </div>
+                <div class="col-8">
+                    <input type="file" name="file" id="uploadBox" multiple class="from-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if(Model.product.Id != 0)
+                    {
+                        <partial name="_EditAndBackToListButtom" model="Model.product.Id"></partial>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="validateInput()" class="btn btn-primary from-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <button asp-action="Index" class="btn btn-primary from-control">Back to List</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}
