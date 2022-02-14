@@ -456,3 +456,4 @@ D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Are
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Index.cshtml.g.cs
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Upsert.cshtml.g.cs
