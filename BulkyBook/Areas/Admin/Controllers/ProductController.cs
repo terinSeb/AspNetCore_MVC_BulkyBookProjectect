@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BulkyBook.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -60,31 +62,59 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(productVM.product);
+            return View(productVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Product product)
+        public IActionResult Upsert(ProductVM productVM)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    var parameter = new DynamicParameters();
-            //    parameter.Add("@Name", product.Name);
+            if (ModelState.IsValid)
+            {
+                string webrootpath = _hostEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    string filename = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webrootpath, @"images\product");
+                    var extension = Path.GetExtension(files[0].FileName);
 
-            //    if (product.Id == 0)
-            //    {
-            //        _unitOfWork.SP_Call.Execute(SD.Proc_Product_Create, parameter);
-            //    }
-            //    else
-            //    {
-            //        parameter.Add("@id", product.Id);
-            //        _unitOfWork.SP_Call.Execute(SD.Proc_Product_Update, parameter);
-            //    }
-            //    _unitOfWork.Save();
-            //    return RedirectToAction(nameof(Index));
+                    if (productVM.product.ImageUrl != null)
+                    {
+                        var imagePath = Path.Combine(webrootpath, productVM.product.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    using (var filestream = new FileStream(Path.Combine(uploads, filename + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(filestream);
+                    }
+                    productVM.product.ImageUrl = @"\images\product\" + filename + extension;
+                }
+                else
+                {
+                    //Update while no change in Image
+                    if (productVM.product.Id != 0)
+                    {
+                        var objfromdb = _unitOfWork.product.get(productVM.product.Id);
+                        productVM.product.ImageUrl = objfromdb.ImageUrl;
+                    }
+                }
+                if (productVM.product.Id == 0)
+                {
+                    _unitOfWork.product.Add(productVM.product);
+                }
+                else
+                {
+                    _unitOfWork.product.update(productVM.product);
+                }
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
             //}
-            return View(product);
+            return View(productVM);
         }
 
         #region API Calls

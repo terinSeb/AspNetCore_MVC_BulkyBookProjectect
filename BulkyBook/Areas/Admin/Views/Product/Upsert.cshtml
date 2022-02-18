@@ -126,7 +126,7 @@
                     {
                         <div class="row">
                             <div class="col">
-                                <button type="submit" onclick="validateInput()" class="btn btn-primary from-control">Create</button>
+                                <button type="submit" onclick="return validateInput()" class="btn btn-primary from-control">Create</button>
                             </div>
                             <div class="col">
                                 <button asp-action="Index" class="btn btn-primary from-control">Back to List</button>
@@ -136,6 +136,12 @@
                 </div>
             </div>
         </div>
+        @if (Model.product.Id != 0)
+        {
+            <div class="col-3 offset-1">
+            <img src="@Model.product.ImageUrl" width ="100%" styel="border-radius:5px;border 1px solid #bbb9b9"/>
+        </div>
+        }
     </div>
 </form>
 
@@ -149,9 +155,9 @@
       menubar: 'file edit format'
     
     });
-    function validateInput() {
+    function validateInput(btn) {
         if(document.getElementById('uploadBox').value === ''){
-            swal('error','Please select an Image','error')
+            swal('error','Please select an Image','error')            
             return false;
         }
     }
