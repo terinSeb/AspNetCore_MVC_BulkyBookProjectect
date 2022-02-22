@@ -113,6 +113,25 @@ namespace BulkyBook.Areas.Admin.Controllers
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }
+                );
+                productVM.CoverTypeList = _unitOfWork.coverType.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }
+                );
+                 if(productVM.product.Id != 0)
+                {
+                    productVM.product = _unitOfWork.product.get(productVM.product.Id);
+                }
+            }
             //}
             return View(productVM);
         }
@@ -135,6 +154,12 @@ namespace BulkyBook.Areas.Admin.Controllers
             if (ObjFromDb == null)
             {
                 return Json(new { success = false, message = "Error While Deleting" });
+            }
+            string webrootpath = _hostEnvironment.WebRootPath;
+            var imagePath = Path.Combine(webrootpath, ObjFromDb.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
             }
             _unitOfWork.product.Remove(ObjFromDb);
             _unitOfWork.Save();
