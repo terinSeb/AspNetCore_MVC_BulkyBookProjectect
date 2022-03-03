@@ -457,3 +457,4 @@ D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Microsoft
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Admin\Views\Company\Index.cshtml.g.cs
