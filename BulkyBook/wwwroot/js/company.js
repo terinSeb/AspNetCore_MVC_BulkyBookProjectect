@@ -16,7 +16,17 @@ function loadDataTable() {
             { "data": "state", "width": "10%" },
             { "data": "postCode", "width": "10%" },
             { "data": "phoneNumber", "width": "10%" },
-            { "data": "isAutherizedCompany", "width": "5%" },
+            {
+                "data": "isAutherizedCompany", "width": "5%",
+                "render": function (data) {
+                    if (data) {
+                        return `<input type="checkbox" disabled checked />`
+                    }
+                    else {
+                        return `<input type="checkbox" disabled />`
+                    }
+                }
+            },
             {
                 "data": "id",
                 "render": function (data) {

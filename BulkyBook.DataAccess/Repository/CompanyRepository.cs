@@ -19,17 +19,18 @@ namespace BulkyBook.DataAccess.Repository
         }
         public void Update(Company company)
         {
-            var ObjFromDb = _db.Companies.FirstOrDefault(x => x.Id == company.Id);
-            if(ObjFromDb != null)
-            {
-                ObjFromDb.City = company.City;
-                ObjFromDb.IsAutherizedCompany = company.IsAutherizedCompany;
-                ObjFromDb.Name = company.Name;
-                ObjFromDb.PhoneNumber = company.PhoneNumber;
-                ObjFromDb.PostCode = company.PostCode;
-                ObjFromDb.State = company.State;
-                ObjFromDb.StreetAddress = company.StreetAddress;                
-            }
+            //var ObjFromDb = _db.Companies.FirstOrDefault(x => x.Id == company.Id);
+            //if(ObjFromDb != null)
+            //{
+            //    ObjFromDb.City = company.City;
+            //    ObjFromDb.IsAutherizedCompany = company.IsAutherizedCompany;
+            //    ObjFromDb.Name = company.Name;
+            //    ObjFromDb.PhoneNumber = company.PhoneNumber;
+            //    ObjFromDb.PostCode = company.PostCode;
+            //    ObjFromDb.State = company.State;
+            //    ObjFromDb.StreetAddress = company.StreetAddress;                
+            //}
+            _db.Update(company);
         }
     }
 }

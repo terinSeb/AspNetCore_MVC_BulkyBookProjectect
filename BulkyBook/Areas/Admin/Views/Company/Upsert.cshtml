@@ -1,8 +1,108 @@
-﻿
+﻿@model BulkyBook.Models.Company
 @{
     ViewData["Title"] = "Upsert";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Create Company";
 }
 
-<h1>Upsert</h1>
+
+<form method="post">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row p-3 border">
+        @{
+            if(Model.Id != 0)
+            {
+                title = "Edit Company";
+                <input type="hidden" asp-for="Id"/>
+            }
+        }
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="City"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="City" class="form-control"/>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="PhoneNumber"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PhoneNumber" class="form-control"/>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="PostCode"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PostCode" class="form-control"/>
+                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                </div>
+            </div>
+             <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="State"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="State" class="form-control"/>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="StreetAddress"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="StreetAddress" class="form-control"/>
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="IsAutherizedCompany"></label>
+                </div>
+                <div class="col-8">
+                    @*<input type="checkbox" asp-for="IsAutherizedCompany" class="form-control"/>                    *@
+                    <input type="checkbox" asp-for="IsAutherizedCompany">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if(Model.Id != 0)
+                    {
+                        <partial name="_EditAndBackToListButtom" model="Model.Id"></partial>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary from-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <button asp-action="Index" class="btn btn-primary from-control">Back to List</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>       
+    </div>
+</form>
 
