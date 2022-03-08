@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0DvxG7c41kiY9AbqKaY5GOwkgdvd6KfR4SO30JsqZjAKTNMJuV6oTxoU6zwtCY8qcnZUbo1vjyi5t7YifjQ5xQ==",
+  "dgSpecHash": "qFCeF5F8cRGt660qeERe+EbKFbAgH4U6GIw4gce8aIL+U65gg0WZXB7z54JtAwLv6NUDWcnYulKnRZGrdHqMcg==",
   "success": true,
   "projectFilePath": "D:\\AspNetCoreMVC_BulkyBookProject\\BulkyBook\\BulkyBook\\BulkyBook.csproj",
   "expectedPackageFiles": [
@@ -24,8 +24,8 @@
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
-    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.8\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.8.nupkg.sha512",
-    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\5.0.8\\microsoft.aspnetcore.identity.ui.5.0.8.nupkg.sha512",
+    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.12\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.12.nupkg.sha512",
+    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\5.0.12\\microsoft.aspnetcore.identity.ui.5.0.12.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\2.2.0\\microsoft.aspnetcore.jsonpatch.2.2.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.2.0\\microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.aspnetcore.mvc.core\\2.2.0\\microsoft.aspnetcore.mvc.core.2.2.0.nupkg.sha512",
@@ -65,7 +65,7 @@
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.dependencymodel\\5.0.0\\microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\5.0.8\\microsoft.extensions.fileproviders.embedded.5.0.8.nupkg.sha512",
+    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\5.0.12\\microsoft.extensions.fileproviders.embedded.5.0.12.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\2.2.0\\microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.identity.core\\6.0.2\\microsoft.extensions.identity.core.6.0.2.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.identity.stores\\6.0.2\\microsoft.extensions.identity.stores.6.0.2.nupkg.sha512",

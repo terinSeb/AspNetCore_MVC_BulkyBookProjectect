@@ -13,6 +13,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
         ICoverTypeRepository coverType { get; }
         IProductRepository product { get; }
         ICompanyRepository company { get; }
+        IApplicationUserRepository applicationUser { get; }
         void Save();
     }
 }
