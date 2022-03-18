@@ -1,5 +1,6 @@
 ﻿using BulkyBook.DataAccess.Data;
 using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -31,7 +33,15 @@ namespace BulkyBook.Areas.Admin.Controllers
             var roles = _db.Roles.ToList();
             foreach(var user in userList)
             {
-
+                var roleId = userRole.FirstOrDefault(x => x.UserId == user.Id).RoleId;
+                user.Role = roles.FirstOrDefault(u => u.Id == roleId).Name;
+                if(user.company == null)
+                {
+                    user.company = new Company()
+                    {
+                        Name = ""
+                    };
+                }
             }
             return Json(new { data = userList });
         }
