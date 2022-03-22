@@ -45,6 +45,19 @@ namespace BulkyBook.Areas.Admin.Controllers
             }
             return Json(new { data = userList });
         }
+        public IActionResult LockUnlock([FromBody] string id)
+        {
+            var objFromDb = _db.ApplicationUsers.FirstOrDefault(x => x.Id == id);
+            if(objFromDb == null)
+            {
+                return Json(new { success = false, message = "Error while Locking/Unlocking" });
+            }
+            if(objFromDb != null)
+            {
+
+            }
+            return null;
+        }
         #endregion
     }
 }

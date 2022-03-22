@@ -15,6 +15,22 @@ function loadDataTable() {
             { "data": "phoneNumber", "width": "15%" },
             { "data": "company.name", "width": "15%" },
             { "data": "role", "width": "15%" },
+            {
+                "data": {
+                    id: "id", lockoutEnd:"lockoutEnd"
+                },
+                "render": function (data) {
+                    let today = new Date().getTime();
+                    let lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today) {
+                        return `<div class="text-center">
+                <a onclick=LockUnlock('${data.id}') class="btn btn-danger text-white" style="cursor:pointer;">
+                    <i class="fas fa-lock-open"></i> &nbsp;
+                </a>           
+            </div>`;
+                    }
+                }
+            }
             //            {
             //                "data": "id",
             //                "render": function (data) {
