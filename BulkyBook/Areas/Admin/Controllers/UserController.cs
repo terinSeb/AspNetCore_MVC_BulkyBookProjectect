@@ -52,11 +52,17 @@ namespace BulkyBook.Areas.Admin.Controllers
             {
                 return Json(new { success = false, message = "Error while Locking/Unlocking" });
             }
-            if(objFromDb != null)
+            if(objFromDb != null && objFromDb.LockoutEnd > DateTime.Now)
             {
-
+                //User is currently Locked, We will unclock them
+                objFromDb.LockoutEnd = DateTime.Now;
             }
-            return null;
+            else
+            {
+                objFromDb.LockoutEnd = DateTime.Now.AddYears(1000);
+            }
+            _db.SaveChanges();
+            return Json(new { success = true, message = "Operation Successfull" });
         }
         #endregion
     }
