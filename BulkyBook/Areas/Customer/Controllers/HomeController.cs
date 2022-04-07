@@ -39,5 +39,15 @@ namespace BulkyBook.Areas.Customer.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult Details(int Id)
+        {
+            var ObjFromDb = _unitOfWork.product.GetFirstorDefault(x => x.Id == Id, includeProperties: "category,coverType");
+            ShoppingCart ObjCart = new ShoppingCart()
+            {
+                product = ObjFromDb,
+                ProductId = ObjFromDb.Id
+            };
+            return View(ObjCart);
+        }
     }
 }
