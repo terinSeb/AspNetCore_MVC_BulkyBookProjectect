@@ -2,12 +2,14 @@
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BulkyBook.Areas.Customer.Controllers
@@ -48,6 +50,45 @@ namespace BulkyBook.Areas.Customer.Controllers
                 ProductId = ObjFromDb.Id
             };
             return View(ObjCart);
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        [Authorize]
+        public IActionResult Details(ShoppingCart ObjshoppingCart)
+        {
+            ObjshoppingCart.id = 0;
+            if (ModelState.IsValid)
+            {
+                //then we will add to cart
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                ObjshoppingCart.ApplicationUserId = claims.Value;
+                ShoppingCart ObjCartfromDb = _unitOfWork.shoppingCartRepository.GetFirstorDefault(
+                     x => x.ApplicationUserId == ObjshoppingCart.ApplicationUserId
+                     && x.ProductId == ObjshoppingCart.ProductId,includeProperties: "product");
+                if(ObjCartfromDb == null)
+                {
+                    // No product for that user exists
+                    _unitOfWork.shoppingCartRepository.Add(ObjshoppingCart);
+                }
+                else
+                {
+                    ObjCartfromDb.Count += ObjshoppingCart.Count;
+                    _unitOfWork.shoppingCartRepository.update(ObjCartfromDb);
+                }
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                var ObjFromDb = _unitOfWork.product.GetFirstorDefault(x => x.Id == ObjshoppingCart.ProductId, includeProperties: "category,coverType");
+                ShoppingCart ObjCart = new ShoppingCart()
+                {
+                    product = ObjFromDb,
+                    ProductId = ObjFromDb.Id
+                };
+                return View(ObjCart);
+            }
         }
     }
 }
