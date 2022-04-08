@@ -50,13 +50,13 @@ namespace BulkyBook
             });
             services.AddAuthentication().AddFacebook(option =>
             {
-                option.AppId = "669708300911567";
-                option.AppSecret = "47ac61c6c043d2a22e2b5ea0b25e42fd";
+                option.AppId = "";
+                option.AppSecret = "";
             });
             services.AddAuthentication().AddGoogle(options =>
             {
-                options.ClientId = "669708300911567";
-                options.ClientSecret = "47ac61c6c043d2a22e2b5ea0b25e42fd";
+                options.ClientId = "";
+                options.ClientSecret = "";
             });
         }
 
