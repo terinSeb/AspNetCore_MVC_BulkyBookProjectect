@@ -10,6 +10,7 @@ namespace BulkyBook.Utility
 {
    public static  class SessionExtension
     {
+        //Code to add Object in Session
         public static void SetObject(this ISession session,string key, Object value)
         {
             session.SetString(key, JsonConvert.SerializeObject(value));
