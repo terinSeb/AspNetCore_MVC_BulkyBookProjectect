@@ -30,6 +30,14 @@ namespace BulkyBook.Areas.Customer.Controllers
         public IActionResult Index()
         {
             IEnumerable<Product> productList = _unitOfWork.product.GetAll(includeProperties: "category,coverType");
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            if(claims != null)
+            {
+                int count = _unitOfWork.shoppingCartRepository.GetAll(u => u.ApplicationUserId == claims.Value).ToList().Count();
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
+            }
             return View(productList);
         }
 
@@ -77,12 +85,12 @@ namespace BulkyBook.Areas.Customer.Controllers
                 {
                     ObjCartfromDb.Count += ObjshoppingCart.Count;
                     _unitOfWork.shoppingCartRepository.update(ObjCartfromDb);
-                }
-                Int32 count = _unitOfWork.shoppingCartRepository
-                    .GetAll(x => x.ApplicationUserId == ObjCartfromDb.ApplicationUserId)
-                    .ToList().Count();
-                HttpContext.Session.SetInt32(SD.ssShoppingCart, count);                
+                }                       
                 _unitOfWork.Save();
+
+                int count = _unitOfWork.shoppingCartRepository.GetAll(u => u.ApplicationUserId == ObjCartfromDb.ApplicationUserId).ToList().Count();
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
+
                 return RedirectToAction(nameof(Index));
             }
             else
