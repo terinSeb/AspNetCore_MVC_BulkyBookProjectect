@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Nb65XT7qW/KrtmyRYPnhaWh4wsrrA0nP7vGrCyaai1Y0bFQNpYtp+KlTA+8Yqg1s5E1r3GioBzi8YBrmvByK/g==",
+  "dgSpecHash": "4gV585J08/SRCta5bWrqFCdTUz5kOimAHuCBNWsyOZXSOmvjC2YJse/fiobZKdVs9LgvVQb4Z5dcgXGAIV9TBg==",
   "success": true,
   "projectFilePath": "D:\\AspNetCoreMVC_BulkyBookProject\\BulkyBook\\BulkyBook.Utility\\BulkyBook.Utility.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,8 @@
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
-    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+    "C:\\Users\\akhils\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\akhils\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
