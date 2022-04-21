@@ -52,7 +52,7 @@ namespace BulkyBook.Areas.Customer.Controllers
                 }
             }
 
-            return View();
+            return View(shoppingCartVM);
         }
     }
 }
