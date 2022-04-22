@@ -43,7 +43,7 @@ namespace BulkyBook.Areas.Customer.Controllers
 
             foreach(var cartList in shoppingCartVM.shoppingCarts)
             {
-                cartList.Price = SD.GetPriceBasedOnQuantity(cartList.Count, cartList.Price, cartList.product.Price50, cartList.product.Price100);
+                cartList.Price = SD.GetPriceBasedOnQuantity(cartList.Count, cartList.product.Price, cartList.product.Price50, cartList.product.Price100);
                 shoppingCartVM.orderHeader.OrderTotal += (cartList.Count * cartList.Price);
                 cartList.product.Description = SD.ConvertToRawHtml(cartList.product.Description);
                 if(cartList.product.Description.Length > 100)
