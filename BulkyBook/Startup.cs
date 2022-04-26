@@ -40,6 +40,7 @@ namespace BulkyBook
             services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders()                
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<SendGridOptions>(Configuration);
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.ConfigureApplicationCookie(options =>
