@@ -503,3 +503,5 @@ D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Microsoft
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\Details.cshtml.g.cs
 D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\obj\Debug\net5.0\Razor\Areas\Customer\Views\Cart\Index.cshtml.g.cs
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\SendGrid.dll
+D:\AspNetCoreMVC_BulkyBookProject\BulkyBook\BulkyBook\bin\Debug\net5.0\StarkbankEcdsa.dll
