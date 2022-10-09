@@ -1,6 +1,6 @@
 ﻿@page
-@using BulkyBook.Utility
 @model RegisterModel
+@using BulkyBook.Utility
 @{
     ViewData["Title"] = "Register";
 }
@@ -19,6 +19,11 @@
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Input.StreetAddress"></label>
                 <input asp-for="Input.StreetAddress" class="form-control" />
                 <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
@@ -34,19 +39,14 @@
                 <span asp-validation-for="Input.State" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.PostalCode"></label>
-                <input asp-for="Input.PostalCode" class="form-control" />
-                <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PostalCode"></label>
+                <input asp-for="Input.PostalCode" class="form-control" />
+                <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Password"></label>
@@ -62,15 +62,14 @@
             {
                 <div class="form-group">
                     <label asp-for="Input.Role"></label>
-                    @Html.DropDownListFor(m => m.Input.Role,Model.Input.RoleList,
-                "Please Select a Role",new {@class = "form-control"})
+                    @Html.DropDownListFor(m => m.Input.Role, Model.Input.RoleList,
+                   "-Please select a role", new { @class = "form-control" })
                 </div>
-
                 <div class="form-group">
                     <label asp-for="Input.CompanyId"></label>
-                    @Html.DropDownListFor(m => m.Input.CompanyId,Model.Input.CompanyList,
-                "Please Select a Company",new {@class = "form-control"})
-                    </div>
+                    @Html.DropDownListFor(m => m.Input.CompanyId, Model.Input.CompanyList,
+                   "-Please select a company", new { @class = "form-control" })
+                </div>
             }
             <button type="submit" class="btn btn-primary">Register</button>
         </form>

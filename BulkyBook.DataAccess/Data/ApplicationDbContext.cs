@@ -13,6 +13,10 @@ namespace BulkyBook.DataAccess.Data
             : base(options)
         {             
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CoverType> coverTypes { get; set; }
         public DbSet<Product> Products { get; set; }
