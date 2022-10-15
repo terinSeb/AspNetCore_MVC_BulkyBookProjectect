@@ -30,25 +30,24 @@
                                 <div class="col-4 text-md-right" style="padding-top:5px;">
                                     <h6><strong>@cartItem.Price<span class="text-muted">x</span> @cartItem.Count </strong></h6>
                                 </div>
-                                        <div class="col-6 col-sm-4 col-lg-6">
-                                            <div class="row">
-                                                <div class="float-right  col-2">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="float-right  col-2">
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fas fa-minus"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-
+                                <div class="col-6 col-sm-4 col-lg-6">
+                                    <div class="row">
+                                        <div class="float-right  col-2">
+                                            <a asp-action="plus" asp-route-cartId="@cartItem.id" class="btn btn-primary">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
                                         </div>
+                                        <div class="float-right  col-2">
+                                            <a asp-action="minus" asp-route-cartId="@cartItem.id" class="btn btn-danger">
+                                                <i class="fas fa-minus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-2 col-sm-4 col-lg-2 text-right">
-                                    <button type="submit" class="btn btn-outline-danger">
+                                    <a asp-action="remove" asp-route-cartId="@cartItem.id" class="btn btn-outline-danger">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

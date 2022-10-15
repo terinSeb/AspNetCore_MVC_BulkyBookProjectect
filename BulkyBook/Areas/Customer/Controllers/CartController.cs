@@ -2,6 +2,7 @@
 using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
 using BulkyBook.Utility;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -84,6 +85,59 @@ namespace BulkyBook.Areas.Customer.Controllers
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return RedirectToAction("Index");
+        }
+        public IActionResult Plus(int cartId)
+        {
+            var cart = _unitOfWork.shoppingCartRepository.GetFirstorDefault(
+                c => c.id == cartId, includeProperties: "product"
+                );
+            cart.Count += 1;
+            cart.Price = SD.GetPriceBasedOnQuantity(cart.Count, cart.product.Price,
+                cart.product.Price50, cart.product.Price100);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Minus(int cartId)
+        {
+            var cart = _unitOfWork.shoppingCartRepository.GetFirstorDefault(
+                c => c.id == cartId, includeProperties: "product"
+                );
+            if(cart.Count == 1)
+            {
+                var cnt = _unitOfWork.shoppingCartRepository.GetAll(
+                    u => u.ApplicationUserId == cart.ApplicationUserId
+                    ).Count();
+                _unitOfWork.shoppingCartRepository.Remove(cart);
+                _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.ssShoppingCart,cnt-1);
+            }
+            else
+            {
+                cart.Count -= 1;
+                cart.Price = SD.GetPriceBasedOnQuantity(cart.Count, cart.product.Price,
+                    cart.product.Price50, cart.product.Price100);
+                _unitOfWork.Save();
+            }
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Remove(int cartId)
+        {
+            var cart = _unitOfWork.shoppingCartRepository.GetFirstorDefault(
+                c => c.id == cartId, includeProperties: "product"
+                );
+             
+                var cnt = _unitOfWork.shoppingCartRepository.GetAll(
+                    u => u.ApplicationUserId == cart.ApplicationUserId
+                    ).Count();
+                _unitOfWork.shoppingCartRepository.Remove(cart);
+                _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
+            
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
