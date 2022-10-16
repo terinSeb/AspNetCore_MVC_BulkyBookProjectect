@@ -39,18 +39,18 @@ namespace BulkyBook.Areas.Customer.Controllers
             shoppingCartVM = new ShoppingCartVM()
             {
                 orderHeader = new OrderHeader(),
-                shoppingCarts = _unitOfWork.shoppingCartRepository.GetAll(x => x.ApplicationUserId == claims.Value,includeProperties: "product")
+                shoppingCarts = _unitOfWork.shoppingCartRepository.GetAll(x => x.ApplicationUserId == claims.Value, includeProperties: "product")
             };
             shoppingCartVM.orderHeader.OrderTotal = 0;
             shoppingCartVM.orderHeader.applicationUser = _unitOfWork.applicationUser.GetFirstorDefault(x => x.Id == claims.Value,
-                includeProperties:"company");
+                includeProperties: "company");
 
-            foreach(var cartList in shoppingCartVM.shoppingCarts)
+            foreach (var cartList in shoppingCartVM.shoppingCarts)
             {
                 cartList.Price = SD.GetPriceBasedOnQuantity(cartList.Count, cartList.product.Price, cartList.product.Price50, cartList.product.Price100);
                 shoppingCartVM.orderHeader.OrderTotal += (cartList.Count * cartList.Price);
                 cartList.product.Description = SD.ConvertToRawHtml(cartList.product.Description);
-                if(cartList.product.Description.Length > 100)
+                if (cartList.product.Description.Length > 100)
                 {
                     cartList.product.Description = cartList.product.Description.Substring(0, 99) + "...";
                 }
@@ -70,7 +70,7 @@ namespace BulkyBook.Areas.Customer.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Verification Email is Empty");
             }
-            
+
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var callbackUrl = Url.Page(
@@ -103,14 +103,14 @@ namespace BulkyBook.Areas.Customer.Controllers
             var cart = _unitOfWork.shoppingCartRepository.GetFirstorDefault(
                 c => c.id == cartId, includeProperties: "product"
                 );
-            if(cart.Count == 1)
+            if (cart.Count == 1)
             {
                 var cnt = _unitOfWork.shoppingCartRepository.GetAll(
                     u => u.ApplicationUserId == cart.ApplicationUserId
                     ).Count();
                 _unitOfWork.shoppingCartRepository.Remove(cart);
                 _unitOfWork.Save();
-                HttpContext.Session.SetInt32(SD.ssShoppingCart,cnt-1);
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
             }
             else
             {
@@ -119,7 +119,7 @@ namespace BulkyBook.Areas.Customer.Controllers
                     cart.product.Price50, cart.product.Price100);
                 _unitOfWork.Save();
             }
-            
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -128,16 +128,48 @@ namespace BulkyBook.Areas.Customer.Controllers
             var cart = _unitOfWork.shoppingCartRepository.GetFirstorDefault(
                 c => c.id == cartId, includeProperties: "product"
                 );
-             
-                var cnt = _unitOfWork.shoppingCartRepository.GetAll(
-                    u => u.ApplicationUserId == cart.ApplicationUserId
-                    ).Count();
-                _unitOfWork.shoppingCartRepository.Remove(cart);
-                _unitOfWork.Save();
-                HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
-            
+
+            var cnt = _unitOfWork.shoppingCartRepository.GetAll(
+                u => u.ApplicationUserId == cart.ApplicationUserId
+                ).Count();
+            _unitOfWork.shoppingCartRepository.Remove(cart);
+            _unitOfWork.Save();
+            HttpContext.Session.SetInt32(SD.ssShoppingCart, cnt - 1);
+
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Summary()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            shoppingCartVM = new ShoppingCartVM
+            {
+                orderHeader = new Models.OrderHeader(),
+                shoppingCarts = _unitOfWork.shoppingCartRepository.GetAll
+                (c => c.ApplicationUserId == claims.Value)
+            };
+
+
+            shoppingCartVM.orderHeader.applicationUser = _unitOfWork.applicationUser
+                .GetFirstorDefault(c => c.Id == claims.Value, includeProperties: "company");
+
+            foreach (var cartList in shoppingCartVM.shoppingCarts)
+            {
+                cartList.Price = SD.GetPriceBasedOnQuantity(cartList.Count, cartList.product.Price, cartList.product.Price50, cartList.product.Price100);
+                shoppingCartVM.orderHeader.OrderTotal += (cartList.Count * cartList.Price);
+            }
+
+            shoppingCartVM.orderHeader.Name = shoppingCartVM.orderHeader.applicationUser.Name;
+            shoppingCartVM.orderHeader.PhonNumber = shoppingCartVM.orderHeader.applicationUser.PhoneNumber;
+            shoppingCartVM.orderHeader.StreetAddress = shoppingCartVM.orderHeader.applicationUser.StreetAddress;
+            shoppingCartVM.orderHeader.City = shoppingCartVM.orderHeader.applicationUser.City;
+            shoppingCartVM.orderHeader.State = shoppingCartVM.orderHeader.applicationUser.State;
+            shoppingCartVM.orderHeader.PostalCode = shoppingCartVM.orderHeader.applicationUser.PostalCode;
+
+            return View(shoppingCartVM);
         }
     }
 }
